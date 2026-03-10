@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, Suspense } from "react";
 import { useSearchParams } from "next/navigation";
 import Link from "next/link";
 import { ROUTES } from "@/lib/constants";
@@ -53,6 +53,14 @@ function formatDuration(start: string, end?: string) {
 }
 
 export default function V2IngestionPage() {
+  return (
+    <Suspense fallback={<div className="flex min-h-screen items-center justify-center" style={{ background: "var(--ci-bg)" }} />}>
+      <V2IngestionContent />
+    </Suspense>
+  );
+}
+
+function V2IngestionContent() {
   const searchParams = useSearchParams();
   const dbParam = searchParams.get("db") || searchParams.get("connection") || null;
   const [showModal, setShowModal] = useState(false);

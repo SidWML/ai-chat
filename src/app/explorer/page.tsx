@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, Suspense } from "react";
 import { useSearchParams } from "next/navigation";
 import Link from "next/link";
 import { MOCK_DATABASES } from "@/lib/mock-data";
@@ -14,6 +14,14 @@ import {
 } from "@/components/v2/ui/Icons";
 
 export default function ExplorerPage() {
+  return (
+    <Suspense fallback={<div className="flex min-h-screen items-center justify-center" style={{ background: "var(--ci-bg)" }} />}>
+      <ExplorerContent />
+    </Suspense>
+  );
+}
+
+function ExplorerContent() {
   const searchParams = useSearchParams();
   const dbParam = searchParams.get("db");
 

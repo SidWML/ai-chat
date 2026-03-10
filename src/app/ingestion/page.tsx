@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, Suspense } from "react";
 import { useSearchParams } from "next/navigation";
 import Link from "next/link";
 import { MOCK_INTROSPECTIONS } from "@/lib/mock-features";
@@ -45,6 +45,14 @@ function formatDuration(start: string, end?: string) {
 }
 
 export default function IngestionPage() {
+  return (
+    <Suspense fallback={<div className="flex min-h-screen items-center justify-center" style={{ background: "var(--ci-bg)" }} />}>
+      <IngestionContent />
+    </Suspense>
+  );
+}
+
+function IngestionContent() {
   const searchParams = useSearchParams();
   const dbParam = searchParams.get("db");
   const [showModal, setShowModal] = useState(false);

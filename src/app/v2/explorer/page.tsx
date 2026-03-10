@@ -1,5 +1,6 @@
 "use client";
 
+import { Suspense } from "react";
 import { useSearchParams } from "next/navigation";
 import Link from "next/link";
 import { ROUTES } from "@/lib/constants";
@@ -7,6 +8,14 @@ import { IconArrowLeft, IconChat } from "@/components/v2/ui/Icons";
 import { DatabaseExplorer } from "@/components/v2/explorer/DatabaseExplorer";
 
 export default function ExplorerPage() {
+  return (
+    <Suspense fallback={<div className="flex h-screen items-center justify-center" style={{ background: "var(--ci-bg)" }} />}>
+      <ExplorerContent />
+    </Suspense>
+  );
+}
+
+function ExplorerContent() {
   const searchParams = useSearchParams();
   const dbId = searchParams.get("db") || searchParams.get("connection") || undefined;
 
