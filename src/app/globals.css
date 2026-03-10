@@ -1,8 +1,68 @@
 @import "tailwindcss";
 
+/* ═══════════════════════════════════════════════════════
+   CInsights — Professional Light Theme
+   ═══════════════════════════════════════════════════════ */
+
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  /* Backgrounds — warm off-whites with subtle depth */
+  --ci-bg: #FAFBFC;
+  --ci-bg-surface: #FFFFFF;
+  --ci-bg-sidebar: #F4F2EF;
+  --ci-bg-elevated: #FFFFFF;
+  --ci-bg-hover: #F0EEEB;
+  --ci-bg-active: #E8E5E1;
+  --ci-bg-wash: #F7F5F2;
+
+  /* Brand palette — CInsights navy + coral */
+  --ci-navy: #3C4C73;
+  --ci-navy-dark: #2C3A5C;
+  --ci-navy-light: #4E6089;
+  --ci-coral: #CF384D;
+  --ci-coral-light: #E8455D;
+  --ci-coral-subtle: rgba(207, 56, 77, 0.08);
+
+  /* Accent */
+  --ci-accent: #4F5D8A;
+  --ci-accent-vivid: #5B6BA0;
+  --ci-accent-subtle: rgba(60, 76, 115, 0.06);
+
+  /* Borders */
+  --ci-border: #E5E2DE;
+  --ci-border-hover: #D4D0CA;
+  --ci-border-focus: var(--ci-navy);
+
+  /* Text */
+  --ci-text: #1A1A1A;
+  --ci-text-secondary: #4A4A4A;
+  --ci-text-tertiary: #8A8880;
+  --ci-text-muted: #B0ADA6;
+
+  /* Status */
+  --ci-success: #16A34A;
+  --ci-success-bg: #F0FDF4;
+  --ci-warning: #D97706;
+  --ci-warning-bg: #FFFBEB;
+  --ci-error: #DC2626;
+  --ci-error-bg: #FEF2F2;
+
+  /* Shadows */
+  --ci-shadow-xs: 0 1px 2px rgba(60, 76, 115, 0.04);
+  --ci-shadow-sm: 0 1px 3px rgba(60, 76, 115, 0.06), 0 1px 2px rgba(60, 76, 115, 0.04);
+  --ci-shadow-md: 0 4px 6px -1px rgba(60, 76, 115, 0.06), 0 2px 4px -1px rgba(60, 76, 115, 0.04);
+  --ci-shadow-lg: 0 10px 25px -3px rgba(60, 76, 115, 0.08), 0 4px 10px -2px rgba(60, 76, 115, 0.04);
+  --ci-shadow-xl: 0 20px 40px -5px rgba(60, 76, 115, 0.1), 0 8px 16px -4px rgba(60, 76, 115, 0.06);
+  --ci-shadow-focus: 0 0 0 3px rgba(60, 76, 115, 0.12);
+
+  /* Radius */
+  --ci-radius-sm: 6px;
+  --ci-radius-md: 10px;
+  --ci-radius-lg: 14px;
+  --ci-radius-xl: 20px;
+
+  /* Legacy compat */
+  --background: #FAFBFC;
+  --foreground: #1A1A1A;
 }
 
 @theme inline {
@@ -12,15 +72,205 @@
   --font-mono: var(--font-geist-mono);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+body {
+  background: var(--ci-bg);
+  color: var(--ci-text);
+  font-family: var(--font-geist-sans), Arial, Helvetica, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+/* ═══ Animations ═══ */
+
+@keyframes ci-fade-up {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes ci-fade-in {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes ci-scale-in {
+  from { opacity: 0; transform: scale(0.97); }
+  to { opacity: 1; transform: scale(1); }
+}
+
+@keyframes ci-slide-right {
+  from { opacity: 0; transform: translateX(-12px); }
+  to { opacity: 1; transform: translateX(0); }
+}
+
+@keyframes ci-typing-dot {
+  0%, 60%, 100% { opacity: 0.2; transform: scale(0.85); }
+  30% { opacity: 1; transform: scale(1); }
+}
+
+@keyframes ci-shimmer {
+  0% { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
+}
+
+@keyframes ci-fade-out {
+  from { opacity: 1; }
+  to { opacity: 0; }
+}
+
+@keyframes ci-pulse-subtle {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.7; }
+}
+
+/* Also keep v2 animation names for reused v2 components */
+@keyframes v2-fade-up {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes v2-fade-in {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes v2-scale-in {
+  from { opacity: 0; transform: scale(0.97); }
+  to { opacity: 1; transform: scale(1); }
+}
+
+@keyframes v2-typing-dot {
+  0%, 60%, 100% { opacity: 0.2; transform: scale(0.85); }
+  30% { opacity: 1; transform: scale(1); }
+}
+
+@keyframes v2-fade-out {
+  from { opacity: 1; }
+  to { opacity: 0; }
+}
+
+@keyframes v2-shimmer {
+  0% { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
+}
+
+.ci-fade-up { animation: ci-fade-up 0.4s cubic-bezier(0.22, 1, 0.36, 1) both; }
+.ci-fade-in { animation: ci-fade-in 0.3s ease-out both; }
+.ci-scale-in { animation: ci-scale-in 0.25s cubic-bezier(0.22, 1, 0.36, 1) both; }
+.ci-slide-right { animation: ci-slide-right 0.35s cubic-bezier(0.22, 1, 0.36, 1) both; }
+
+/* v2 compat classes for reused components */
+.v2-fade-up { animation: v2-fade-up 0.4s cubic-bezier(0.22, 1, 0.36, 1) both; }
+.v2-fade-in { animation: v2-fade-in 0.3s ease-out both; }
+.v2-scale-in { animation: v2-scale-in 0.25s cubic-bezier(0.22, 1, 0.36, 1) both; }
+.v2-slide-right { animation: ci-slide-right 0.35s cubic-bezier(0.22, 1, 0.36, 1) both; }
+
+/* ═══ Scrollbar ═══ */
+
+.ci-scrollbar::-webkit-scrollbar { width: 5px; }
+.ci-scrollbar::-webkit-scrollbar-track { background: transparent; }
+.ci-scrollbar::-webkit-scrollbar-thumb { background: rgba(0, 0, 0, 0.08); border-radius: 10px; }
+.ci-scrollbar::-webkit-scrollbar-thumb:hover { background: rgba(0, 0, 0, 0.15); }
+
+/* v2 compat */
+.v2-scroll::-webkit-scrollbar { width: 5px; }
+.v2-scroll::-webkit-scrollbar-track { background: transparent; }
+.v2-scroll::-webkit-scrollbar-thumb { background: rgba(0, 0, 0, 0.08); border-radius: 10px; }
+.v2-scroll::-webkit-scrollbar-thumb:hover { background: rgba(0, 0, 0, 0.15); }
+.v2-scrollbar::-webkit-scrollbar { width: 5px; }
+.v2-scrollbar::-webkit-scrollbar-track { background: transparent; }
+.v2-scrollbar::-webkit-scrollbar-thumb { background: rgba(0, 0, 0, 0.08); border-radius: 10px; }
+.v2-scrollbar::-webkit-scrollbar-thumb:hover { background: rgba(0, 0, 0, 0.15); }
+
+::-webkit-scrollbar { width: 6px; height: 6px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: rgba(0, 0, 0, 0.08); border-radius: 3px; }
+::-webkit-scrollbar-thumb:hover { background: rgba(0, 0, 0, 0.15); }
+
+/* ═══ Input focus ═══ */
+
+.ci-input-glow:focus-within {
+  border-color: var(--ci-navy) !important;
+  box-shadow: var(--ci-shadow-focus) !important;
+}
+
+.v2-input-glow:focus-within {
+  border-color: var(--ci-navy) !important;
+  box-shadow: var(--ci-shadow-focus) !important;
+}
+
+/* ═══ Gradient text ═══ */
+
+.ci-gradient-text {
+  background: linear-gradient(135deg, var(--ci-navy) 0%, var(--ci-navy-light) 60%, var(--ci-coral) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.v2-gradient-text {
+  background: linear-gradient(135deg, var(--ci-navy) 0%, var(--ci-navy-light) 60%, var(--ci-coral) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* ═══ Shimmer ═══ */
+
+.ci-shimmer {
+  background: linear-gradient(90deg, transparent 25%, rgba(0,0,0,0.03) 50%, transparent 75%);
+  background-size: 200% 100%;
+  animation: ci-shimmer 1.5s infinite;
+}
+
+.v2-shimmer {
+  background: linear-gradient(90deg, transparent 25%, rgba(0,0,0,0.03) 50%, transparent 75%);
+  background-size: 200% 100%;
+  animation: v2-shimmer 1.5s infinite;
+}
+
+/* ═══ Sidebar active item ═══ */
+
+.ci-sidebar-active {
+  position: relative;
+  background: var(--ci-accent-subtle);
+}
+.ci-sidebar-active::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 4px;
+  bottom: 4px;
+  width: 3px;
+  background: var(--ci-navy);
+  border-radius: 0 3px 3px 0;
+}
+
+.v2-sidebar-active {
+  position: relative;
+  background: var(--ci-accent-subtle);
+}
+.v2-sidebar-active::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 4px;
+  bottom: 4px;
+  width: 3px;
+  background: var(--ci-navy);
+  border-radius: 0 3px 3px 0;
+}
+
+/* ═══ Prose (markdown) ═══ */
+
+.prose :where(pre):not(:where([class~="not-prose"] *)) {
+  border-radius: 0.75rem;
+  font-size: 0.8125rem;
+}
+
+.prose :where(code):not(:where([class~="not-prose"] *)) {
+  font-size: 0.8125rem;
+}
+
+.prose :where(table):not(:where([class~="not-prose"] *)) {
+  font-size: 0.8125rem;
 }

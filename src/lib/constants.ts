@@ -1,0 +1,40 @@
+export const APP_NAME = "CInsights";
+
+export const ROUTES = {
+  HOME: "/",
+  LOGIN: "/login",
+  CHAT: "/chat",
+  CHAT_ID: (id: string) => `/chat/${id}`,
+  SETTINGS: "/settings",
+  EXPLORER: "/explorer",
+  DASHBOARDS: "/dashboards",
+  INGESTION: "/ingestion",
+  KNOWLEDGE_BASE: "/knowledge-base",
+  USERS: "/users",
+  SUGGESTIONS: "/suggestions",
+  V2_HOME: "/v2",
+  V2_LOGIN: "/v2/login",
+  V2_CHAT: "/v2/chat",
+  V2_CHAT_ID: (id: string) => `/v2/chat/${id}`,
+  V2_SETTINGS: "/v2/settings",
+  V2_DASHBOARDS: "/v2/dashboards",
+  V2_EXPLORER: "/v2/explorer",
+  V2_INGESTION: "/v2/ingestion",
+  V2_KNOWLEDGE_BASE: "/v2/knowledge-base",
+  V2_USERS: "/v2/users",
+  V2_SUGGESTIONS: "/v2/suggestions",
+  V3_HOME: "/v3",
+  V3_LOGIN: "/v3/login",
+  V3_CHAT: "/v3/chat",
+  V3_CHAT_ID: (id: string) => `/v3/chat/${id}`,
+  V3_DASHBOARDS: "/v3/dashboards",
+  V3_EXPLORER: "/v3/explorer",
+  V3_INGESTION: "/v3/ingestion",
+  V3_KNOWLEDGE_BASE: "/v3/knowledge-base",
+  V3_USERS: "/v3/users",
+  V3_SUGGESTIONS: "/v3/suggestions",
+  V3_SETTINGS: "/v3/settings",
+} as const;
+
+export const SIDEBAR_WIDTH = 280;
+export const SIDEBAR_COLLAPSED_WIDTH = 0;

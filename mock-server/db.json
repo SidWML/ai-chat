@@ -1,0 +1,842 @@
+{
+  "auth": [
+    {
+      "id": 1,
+      "username": "admin",
+      "password": "admin123",
+      "email": "admin@cinsights.ai",
+      "full_name": "Admin User",
+      "role": "admin",
+      "is_active": true
+    },
+    {
+      "id": 2,
+      "username": "demo",
+      "password": "demo123",
+      "email": "demo@cinsights.ai",
+      "full_name": "Demo User",
+      "role": "user",
+      "is_active": true
+    }
+  ],
+  "connections": [
+    {
+      "id": "conn-1",
+      "name": "Production Analytics",
+      "description": "Main analytics PostgreSQL database",
+      "type": "postgresql",
+      "status": "active",
+      "config": {
+        "host": "analytics-db.internal",
+        "port": 5432,
+        "database": "analytics_prod",
+        "username": "analytics_reader",
+        "password": "••••••••",
+        "ssl": true
+      },
+      "last_tested_at": "2026-03-09T10:30:00Z",
+      "last_error": null,
+      "created_at": "2026-01-15T08:00:00Z",
+      "updated_at": "2026-03-09T10:30:00Z",
+      "tables_count": 24,
+      "database_size_mb": 2450
+    },
+    {
+      "id": "conn-2",
+      "name": "E-Commerce Store",
+      "description": "MySQL database for the online store",
+      "type": "mysql",
+      "status": "active",
+      "config": {
+        "host": "ecom-db.internal",
+        "port": 3306,
+        "database": "ecommerce",
+        "username": "store_admin",
+        "password": "••••••••",
+        "ssl": false
+      },
+      "last_tested_at": "2026-03-08T14:20:00Z",
+      "last_error": null,
+      "created_at": "2026-02-01T10:00:00Z",
+      "updated_at": "2026-03-08T14:20:00Z",
+      "tables_count": 18,
+      "database_size_mb": 890
+    },
+    {
+      "id": "conn-3",
+      "name": "HR Management",
+      "description": "Employee and payroll database",
+      "type": "postgresql",
+      "status": "active",
+      "config": {
+        "host": "hr-db.internal",
+        "port": 5432,
+        "database": "hr_system",
+        "username": "hr_reader",
+        "password": "••••••••",
+        "ssl": true
+      },
+      "last_tested_at": "2026-03-07T09:00:00Z",
+      "last_error": null,
+      "created_at": "2026-01-20T12:00:00Z",
+      "updated_at": "2026-03-07T09:00:00Z",
+      "tables_count": 12,
+      "database_size_mb": 340
+    },
+    {
+      "id": "conn-4",
+      "name": "Marketing CRM",
+      "description": "Customer relationship management database",
+      "type": "mysql",
+      "status": "error",
+      "config": {
+        "host": "crm-db.internal",
+        "port": 3306,
+        "database": "marketing_crm",
+        "username": "crm_user",
+        "password": "••••••••",
+        "ssl": false
+      },
+      "last_tested_at": "2026-03-06T16:45:00Z",
+      "last_error": "Connection refused: host unreachable",
+      "created_at": "2026-02-10T14:00:00Z",
+      "updated_at": "2026-03-06T16:45:00Z",
+      "tables_count": 8,
+      "database_size_mb": 156
+    }
+  ],
+  "threads": [
+    {
+      "id": "thread-1",
+      "thread_id": "thread-1",
+      "title": "Monthly Revenue Analysis",
+      "created_at": "2026-03-09T08:00:00Z",
+      "updated_at": "2026-03-09T09:30:00Z",
+      "message_count": 6,
+      "connection_id": "conn-1",
+      "connection_name": "Production Analytics"
+    },
+    {
+      "id": "thread-2",
+      "thread_id": "thread-2",
+      "title": "Top Selling Products Q1",
+      "created_at": "2026-03-08T14:00:00Z",
+      "updated_at": "2026-03-08T16:20:00Z",
+      "message_count": 4,
+      "connection_id": "conn-2",
+      "connection_name": "E-Commerce Store"
+    },
+    {
+      "id": "thread-3",
+      "thread_id": "thread-3",
+      "title": "Employee Turnover Report",
+      "created_at": "2026-03-07T10:00:00Z",
+      "updated_at": "2026-03-07T11:45:00Z",
+      "message_count": 8,
+      "connection_id": "conn-3",
+      "connection_name": "HR Management"
+    },
+    {
+      "id": "thread-4",
+      "thread_id": "thread-4",
+      "title": "Customer Acquisition Costs",
+      "created_at": "2026-03-06T09:00:00Z",
+      "updated_at": "2026-03-06T10:15:00Z",
+      "message_count": 3,
+      "connection_id": "conn-1",
+      "connection_name": "Production Analytics"
+    },
+    {
+      "id": "thread-5",
+      "thread_id": "thread-5",
+      "title": "Inventory Stock Levels",
+      "created_at": "2026-03-05T13:00:00Z",
+      "updated_at": "2026-03-05T14:30:00Z",
+      "message_count": 5,
+      "connection_id": "conn-2",
+      "connection_name": "E-Commerce Store"
+    },
+    {
+      "id": "thread-6",
+      "thread_id": "thread-6",
+      "title": "Sales by Region Breakdown",
+      "created_at": "2026-03-04T11:00:00Z",
+      "updated_at": "2026-03-04T12:00:00Z",
+      "message_count": 7,
+      "connection_id": "conn-1",
+      "connection_name": "Production Analytics"
+    }
+  ],
+  "messages": [
+    {
+      "id": "msg-1",
+      "thread_id": "thread-1",
+      "role": "human",
+      "content": "Show me the monthly revenue for the last 6 months"
+    },
+    {
+      "id": "msg-2",
+      "thread_id": "thread-1",
+      "role": "assistant",
+      "content": "Here's your monthly revenue analysis for the last 6 months. I've created a comprehensive view with both a chart and detailed data table.",
+      "canvas": {
+        "id": "canvas-1",
+        "title": "Monthly Revenue Analysis",
+        "blocks": [
+          {
+            "id": "block-1-1",
+            "type": "text",
+            "title": "Revenue Summary",
+            "content": "## Monthly Revenue Overview\n\nTotal revenue over the last 6 months was **$4.2M**, representing a **12.5% increase** compared to the previous period.\n\n- **Highest month**: January 2026 ($820K)\n- **Lowest month**: October 2025 ($580K)\n- **Average monthly revenue**: $700K\n- **Growth trend**: Consistently upward with seasonal dip in October"
+          },
+          {
+            "id": "block-1-2",
+            "type": "chart",
+            "title": "Revenue Trend",
+            "chartType": "area",
+            "data": {
+              "labels": ["Oct 2025", "Nov 2025", "Dec 2025", "Jan 2026", "Feb 2026", "Mar 2026"],
+              "datasets": [
+                {
+                  "name": "Revenue",
+                  "data": [580000, 640000, 720000, 820000, 760000, 680000],
+                  "color": "#3C4C73"
+                },
+                {
+                  "name": "Target",
+                  "data": [600000, 650000, 700000, 750000, 750000, 750000],
+                  "color": "#CF384D"
+                }
+              ]
+            }
+          },
+          {
+            "id": "block-1-3",
+            "type": "table",
+            "title": "Revenue by Month",
+            "columns": ["Month", "Revenue", "Orders", "Avg Order Value", "Growth"],
+            "rows": [
+              {"Month": "Oct 2025", "Revenue": "$580,000", "Orders": 1842, "Avg Order Value": "$315", "Growth": "-2.1%"},
+              {"Month": "Nov 2025", "Revenue": "$640,000", "Orders": 2105, "Avg Order Value": "$304", "Growth": "+10.3%"},
+              {"Month": "Dec 2025", "Revenue": "$720,000", "Orders": 2460, "Avg Order Value": "$293", "Growth": "+12.5%"},
+              {"Month": "Jan 2026", "Revenue": "$820,000", "Orders": 2780, "Avg Order Value": "$295", "Growth": "+13.9%"},
+              {"Month": "Feb 2026", "Revenue": "$760,000", "Orders": 2510, "Avg Order Value": "$303", "Growth": "-7.3%"},
+              {"Month": "Mar 2026", "Revenue": "$680,000", "Orders": 2200, "Avg Order Value": "$309", "Growth": "-10.5%"}
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "id": "msg-3",
+      "thread_id": "thread-1",
+      "role": "human",
+      "content": "Break this down by product category"
+    },
+    {
+      "id": "msg-4",
+      "thread_id": "thread-1",
+      "role": "assistant",
+      "content": "Here's the revenue breakdown by product category. Electronics leads with 42% of total revenue.",
+      "canvas": {
+        "id": "canvas-1b",
+        "title": "Revenue by Category",
+        "blocks": [
+          {
+            "id": "block-1b-1",
+            "type": "chart",
+            "title": "Revenue by Category",
+            "chartType": "pie",
+            "data": {
+              "labels": ["Electronics", "Clothing", "Home & Garden", "Sports", "Books", "Other"],
+              "datasets": [
+                {
+                  "name": "Revenue Share",
+                  "data": [1764000, 840000, 630000, 420000, 336000, 210000],
+                  "colors": ["#3C4C73", "#CF384D", "#4F5D8A", "#16A34A", "#D97706", "#8B5CF6"]
+                }
+              ]
+            }
+          },
+          {
+            "id": "block-1b-2",
+            "type": "table",
+            "title": "Category Performance",
+            "columns": ["Category", "Revenue", "Share %", "YoY Growth", "Top Product"],
+            "rows": [
+              {"Category": "Electronics", "Revenue": "$1,764,000", "Share %": "42.0%", "YoY Growth": "+18.2%", "Top Product": "Smart Watch Pro"},
+              {"Category": "Clothing", "Revenue": "$840,000", "Share %": "20.0%", "YoY Growth": "+8.5%", "Top Product": "Premium Jacket"},
+              {"Category": "Home & Garden", "Revenue": "$630,000", "Share %": "15.0%", "YoY Growth": "+12.1%", "Top Product": "Robot Vacuum"},
+              {"Category": "Sports", "Revenue": "$420,000", "Share %": "10.0%", "YoY Growth": "+22.3%", "Top Product": "Yoga Mat Pro"},
+              {"Category": "Books", "Revenue": "$336,000", "Share %": "8.0%", "YoY Growth": "-3.2%", "Top Product": "AI Handbook"},
+              {"Category": "Other", "Revenue": "$210,000", "Share %": "5.0%", "YoY Growth": "+5.7%", "Top Product": "Gift Cards"}
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "id": "msg-5",
+      "thread_id": "thread-2",
+      "role": "human",
+      "content": "What are the top 10 selling products this quarter?"
+    },
+    {
+      "id": "msg-6",
+      "thread_id": "thread-2",
+      "role": "assistant",
+      "content": "Here are the top 10 best-selling products for Q1 2026, sorted by units sold.",
+      "canvas": {
+        "id": "canvas-2",
+        "title": "Top Selling Products Q1 2026",
+        "blocks": [
+          {
+            "id": "block-2-1",
+            "type": "chart",
+            "title": "Top 10 Products by Units Sold",
+            "chartType": "bar",
+            "data": {
+              "labels": ["Wireless Earbuds", "Phone Case", "USB-C Cable", "Screen Protector", "Smart Watch", "Laptop Stand", "Mouse Pad", "Keyboard", "Webcam", "Monitor Light"],
+              "datasets": [
+                {
+                  "name": "Units Sold",
+                  "data": [4520, 3890, 3450, 3120, 2890, 2340, 2100, 1980, 1750, 1620],
+                  "color": "#3C4C73"
+                },
+                {
+                  "name": "Revenue ($)",
+                  "data": [135600, 38900, 27600, 15600, 578000, 93600, 21000, 138600, 122500, 97200],
+                  "color": "#CF384D"
+                }
+              ]
+            }
+          },
+          {
+            "id": "block-2-2",
+            "type": "table",
+            "title": "Product Details",
+            "columns": ["Rank", "Product", "Category", "Units Sold", "Revenue", "Avg Price", "Rating", "Stock"],
+            "rows": [
+              {"Rank": 1, "Product": "Wireless Earbuds Pro", "Category": "Electronics", "Units Sold": 4520, "Revenue": "$135,600", "Avg Price": "$29.99", "Rating": "4.7", "Stock": 1230},
+              {"Rank": 2, "Product": "Premium Phone Case", "Category": "Accessories", "Units Sold": 3890, "Revenue": "$38,900", "Avg Price": "$9.99", "Rating": "4.5", "Stock": 5670},
+              {"Rank": 3, "Product": "USB-C Fast Cable", "Category": "Accessories", "Units Sold": 3450, "Revenue": "$27,600", "Avg Price": "$7.99", "Rating": "4.3", "Stock": 8900},
+              {"Rank": 4, "Product": "Glass Screen Protector", "Category": "Accessories", "Units Sold": 3120, "Revenue": "$15,600", "Avg Price": "$4.99", "Rating": "4.2", "Stock": 12000},
+              {"Rank": 5, "Product": "Smart Watch Pro", "Category": "Electronics", "Units Sold": 2890, "Revenue": "$578,000", "Avg Price": "$199.99", "Rating": "4.8", "Stock": 340},
+              {"Rank": 6, "Product": "Ergonomic Laptop Stand", "Category": "Office", "Units Sold": 2340, "Revenue": "$93,600", "Avg Price": "$39.99", "Rating": "4.6", "Stock": 890},
+              {"Rank": 7, "Product": "XL Gaming Mouse Pad", "Category": "Gaming", "Units Sold": 2100, "Revenue": "$21,000", "Avg Price": "$9.99", "Rating": "4.4", "Stock": 3400},
+              {"Rank": 8, "Product": "Mechanical Keyboard", "Category": "Electronics", "Units Sold": 1980, "Revenue": "$138,600", "Avg Price": "$69.99", "Rating": "4.7", "Stock": 560},
+              {"Rank": 9, "Product": "HD Webcam 1080p", "Category": "Electronics", "Units Sold": 1750, "Revenue": "$122,500", "Avg Price": "$69.99", "Rating": "4.5", "Stock": 780},
+              {"Rank": 10, "Product": "LED Monitor Light Bar", "Category": "Office", "Units Sold": 1620, "Revenue": "$97,200", "Avg Price": "$59.99", "Rating": "4.6", "Stock": 450}
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "id": "msg-7",
+      "thread_id": "thread-3",
+      "role": "human",
+      "content": "Show me employee turnover rate by department"
+    },
+    {
+      "id": "msg-8",
+      "thread_id": "thread-3",
+      "role": "assistant",
+      "content": "Here's the employee turnover analysis by department for the past year.",
+      "canvas": {
+        "id": "canvas-3",
+        "title": "Employee Turnover Report",
+        "blocks": [
+          {
+            "id": "block-3-1",
+            "type": "text",
+            "title": "Turnover Summary",
+            "content": "## Employee Turnover Analysis\n\nOverall turnover rate: **14.2%** (industry avg: 18%)\n\n### Key Insights\n- **Sales** has the highest turnover at 22.5%, mainly driven by competitive market conditions\n- **Engineering** maintains the lowest rate at 6.8%, indicating strong retention\n- **Customer Support** shows concerning upward trend (+4.2% QoQ)\n- Average tenure before exit: **2.3 years**"
+          },
+          {
+            "id": "block-3-2",
+            "type": "chart",
+            "title": "Turnover Rate by Department",
+            "chartType": "bar",
+            "data": {
+              "labels": ["Sales", "Marketing", "Support", "Operations", "Finance", "Engineering", "HR", "Legal"],
+              "datasets": [
+                {
+                  "name": "Turnover %",
+                  "data": [22.5, 16.3, 18.7, 12.4, 9.8, 6.8, 11.2, 8.5],
+                  "color": "#CF384D"
+                },
+                {
+                  "name": "Industry Avg %",
+                  "data": [20, 15, 18, 14, 10, 12, 12, 9],
+                  "color": "#3C4C73"
+                }
+              ]
+            }
+          },
+          {
+            "id": "block-3-3",
+            "type": "table",
+            "title": "Department Details",
+            "columns": ["Department", "Headcount", "Exits", "Turnover %", "Avg Tenure", "Open Roles", "Satisfaction"],
+            "rows": [
+              {"Department": "Sales", "Headcount": 89, "Exits": 20, "Turnover %": "22.5%", "Avg Tenure": "1.8 yrs", "Open Roles": 12, "Satisfaction": "3.2/5"},
+              {"Department": "Marketing", "Headcount": 45, "Exits": 7, "Turnover %": "16.3%", "Avg Tenure": "2.1 yrs", "Open Roles": 4, "Satisfaction": "3.6/5"},
+              {"Department": "Customer Support", "Headcount": 67, "Exits": 12, "Turnover %": "18.7%", "Avg Tenure": "1.5 yrs", "Open Roles": 8, "Satisfaction": "3.1/5"},
+              {"Department": "Operations", "Headcount": 38, "Exits": 5, "Turnover %": "12.4%", "Avg Tenure": "3.2 yrs", "Open Roles": 2, "Satisfaction": "3.8/5"},
+              {"Department": "Finance", "Headcount": 28, "Exits": 3, "Turnover %": "9.8%", "Avg Tenure": "4.1 yrs", "Open Roles": 1, "Satisfaction": "4.0/5"},
+              {"Department": "Engineering", "Headcount": 112, "Exits": 8, "Turnover %": "6.8%", "Avg Tenure": "3.8 yrs", "Open Roles": 15, "Satisfaction": "4.2/5"},
+              {"Department": "HR", "Headcount": 22, "Exits": 2, "Turnover %": "11.2%", "Avg Tenure": "2.9 yrs", "Open Roles": 1, "Satisfaction": "3.9/5"},
+              {"Department": "Legal", "Headcount": 15, "Exits": 1, "Turnover %": "8.5%", "Avg Tenure": "4.5 yrs", "Open Roles": 0, "Satisfaction": "4.1/5"}
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "id": "msg-9",
+      "thread_id": "thread-4",
+      "role": "human",
+      "content": "What's our customer acquisition cost trend?"
+    },
+    {
+      "id": "msg-10",
+      "thread_id": "thread-4",
+      "role": "assistant",
+      "content": "Here's the customer acquisition cost analysis with channel breakdown.",
+      "canvas": {
+        "id": "canvas-4",
+        "title": "Customer Acquisition Cost Analysis",
+        "blocks": [
+          {
+            "id": "block-4-1",
+            "type": "chart",
+            "title": "CAC Trend (12 Months)",
+            "chartType": "line",
+            "data": {
+              "labels": ["Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec", "Jan", "Feb", "Mar"],
+              "datasets": [
+                {
+                  "name": "CAC ($)",
+                  "data": [45, 42, 38, 35, 40, 44, 48, 52, 55, 50, 46, 43],
+                  "color": "#3C4C73"
+                },
+                {
+                  "name": "LTV:CAC Ratio",
+                  "data": [3.2, 3.4, 3.8, 4.1, 3.6, 3.3, 3.0, 2.8, 2.6, 2.9, 3.1, 3.3],
+                  "color": "#16A34A"
+                }
+              ]
+            }
+          },
+          {
+            "id": "block-4-2",
+            "type": "chart",
+            "title": "CAC by Channel",
+            "chartType": "pie",
+            "data": {
+              "labels": ["Google Ads", "Facebook", "Organic Search", "Referral", "Email", "Direct"],
+              "datasets": [
+                {
+                  "name": "Spend",
+                  "data": [125000, 89000, 0, 15000, 32000, 0],
+                  "colors": ["#3C4C73", "#CF384D", "#16A34A", "#D97706", "#8B5CF6", "#06B6D4"]
+                }
+              ]
+            }
+          }
+        ]
+      }
+    },
+    {
+      "id": "msg-11",
+      "thread_id": "thread-5",
+      "role": "human",
+      "content": "Show me current inventory levels with low stock alerts"
+    },
+    {
+      "id": "msg-12",
+      "thread_id": "thread-5",
+      "role": "assistant",
+      "content": "Here's your inventory overview with low stock alerts highlighted.",
+      "canvas": {
+        "id": "canvas-5",
+        "title": "Inventory Stock Levels",
+        "blocks": [
+          {
+            "id": "block-5-1",
+            "type": "text",
+            "title": "Stock Alert Summary",
+            "content": "## Inventory Status\n\n- **Total SKUs**: 1,247\n- **In Stock**: 1,089 (87.3%)\n- **Low Stock** (< 50 units): 98 items\n- **Out of Stock**: 60 items\n\n### Urgent Actions Required\n1. 12 best-sellers are below reorder point\n2. 3 products have been out of stock for > 7 days\n3. Estimated revenue at risk: **$45,000/week**"
+          },
+          {
+            "id": "block-5-2",
+            "type": "table",
+            "title": "Low Stock Items",
+            "columns": ["SKU", "Product", "Category", "Current Stock", "Reorder Point", "Status", "Days Until Stockout", "Supplier"],
+            "rows": [
+              {"SKU": "EL-1001", "Product": "Wireless Earbuds Pro", "Category": "Electronics", "Current Stock": 23, "Reorder Point": 100, "Status": "Critical", "Days Until Stockout": 3, "Supplier": "TechCorp"},
+              {"SKU": "EL-2045", "Product": "Smart Watch Pro", "Category": "Electronics", "Current Stock": 12, "Reorder Point": 50, "Status": "Critical", "Days Until Stockout": 2, "Supplier": "WearTech"},
+              {"SKU": "OF-3021", "Product": "Ergonomic Chair", "Category": "Office", "Current Stock": 45, "Reorder Point": 60, "Status": "Low", "Days Until Stockout": 8, "Supplier": "FurniPro"},
+              {"SKU": "GA-4012", "Product": "Gaming Mouse", "Category": "Gaming", "Current Stock": 38, "Reorder Point": 75, "Status": "Low", "Days Until Stockout": 5, "Supplier": "GameGear"},
+              {"SKU": "AC-5033", "Product": "Phone Case Premium", "Category": "Accessories", "Current Stock": 67, "Reorder Point": 200, "Status": "Low", "Days Until Stockout": 4, "Supplier": "CaseMaker"},
+              {"SKU": "EL-1089", "Product": "USB-C Hub", "Category": "Electronics", "Current Stock": 0, "Reorder Point": 100, "Status": "Out of Stock", "Days Until Stockout": 0, "Supplier": "TechCorp"},
+              {"SKU": "HG-6001", "Product": "Robot Vacuum", "Category": "Home", "Current Stock": 8, "Reorder Point": 30, "Status": "Critical", "Days Until Stockout": 3, "Supplier": "CleanBot"},
+              {"SKU": "SP-7015", "Product": "Yoga Mat Pro", "Category": "Sports", "Current Stock": 156, "Reorder Point": 100, "Status": "OK", "Days Until Stockout": 18, "Supplier": "FitGear"},
+              {"SKU": "EL-1102", "Product": "Mechanical Keyboard", "Category": "Electronics", "Current Stock": 34, "Reorder Point": 80, "Status": "Low", "Days Until Stockout": 6, "Supplier": "KeyTech"},
+              {"SKU": "OF-3045", "Product": "Monitor Light Bar", "Category": "Office", "Current Stock": 89, "Reorder Point": 60, "Status": "OK", "Days Until Stockout": 22, "Supplier": "LightPro"}
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "id": "msg-13",
+      "thread_id": "thread-6",
+      "role": "human",
+      "content": "Show me sales distribution across all regions with a map"
+    },
+    {
+      "id": "msg-14",
+      "thread_id": "thread-6",
+      "role": "assistant",
+      "content": "Here's the regional sales breakdown with an interactive map view.",
+      "canvas": {
+        "id": "canvas-6",
+        "title": "Sales by Region",
+        "blocks": [
+          {
+            "id": "block-6-1",
+            "type": "map",
+            "title": "Sales Distribution Map",
+            "mapType": "markers",
+            "locations": [
+              {"name": "New York", "lat": 40.7128, "lng": -74.006, "value": 1250000, "label": "$1.25M"},
+              {"name": "Los Angeles", "lat": 34.0522, "lng": -118.2437, "value": 980000, "label": "$980K"},
+              {"name": "Chicago", "lat": 41.8781, "lng": -87.6298, "value": 720000, "label": "$720K"},
+              {"name": "Houston", "lat": 29.7604, "lng": -95.3698, "value": 540000, "label": "$540K"},
+              {"name": "Phoenix", "lat": 33.4484, "lng": -112.074, "value": 420000, "label": "$420K"},
+              {"name": "Philadelphia", "lat": 39.9526, "lng": -75.1652, "value": 380000, "label": "$380K"},
+              {"name": "San Antonio", "lat": 29.4241, "lng": -98.4936, "value": 310000, "label": "$310K"},
+              {"name": "San Diego", "lat": 32.7157, "lng": -117.1611, "value": 290000, "label": "$290K"},
+              {"name": "Dallas", "lat": 32.7767, "lng": -96.797, "value": 470000, "label": "$470K"},
+              {"name": "Miami", "lat": 25.7617, "lng": -80.1918, "value": 560000, "label": "$560K"}
+            ],
+            "center": [39.8283, -98.5795],
+            "zoom": 4
+          },
+          {
+            "id": "block-6-2",
+            "type": "chart",
+            "title": "Revenue by Region",
+            "chartType": "bar",
+            "data": {
+              "labels": ["Northeast", "Southeast", "Midwest", "Southwest", "West Coast"],
+              "datasets": [
+                {
+                  "name": "Q1 2026",
+                  "data": [1630000, 1100000, 720000, 770000, 1270000],
+                  "color": "#3C4C73"
+                },
+                {
+                  "name": "Q4 2025",
+                  "data": [1450000, 980000, 680000, 710000, 1180000],
+                  "color": "#CF384D"
+                }
+              ]
+            }
+          },
+          {
+            "id": "block-6-3",
+            "type": "table",
+            "title": "Regional Sales Details",
+            "columns": ["Region", "Revenue", "Orders", "Customers", "Growth", "Market Share"],
+            "rows": [
+              {"Region": "Northeast", "Revenue": "$1,630,000", "Orders": 5420, "Customers": 3200, "Growth": "+12.4%", "Market Share": "29.6%"},
+              {"Region": "West Coast", "Revenue": "$1,270,000", "Orders": 4180, "Customers": 2800, "Growth": "+7.6%", "Market Share": "23.1%"},
+              {"Region": "Southeast", "Revenue": "$1,100,000", "Orders": 3650, "Customers": 2400, "Growth": "+12.2%", "Market Share": "20.0%"},
+              {"Region": "Southwest", "Revenue": "$770,000", "Orders": 2560, "Customers": 1700, "Growth": "+8.5%", "Market Share": "14.0%"},
+              {"Region": "Midwest", "Revenue": "$720,000", "Orders": 2380, "Customers": 1600, "Growth": "+5.9%", "Market Share": "13.3%"}
+            ]
+          }
+        ]
+      }
+    }
+  ],
+  "collections": [
+    {
+      "id": "col-1",
+      "name": "Revenue Reports",
+      "description": "All revenue-related analyses and reports",
+      "color": "#3C4C73",
+      "icon": "chart",
+      "thread_ids": ["thread-1", "thread-4", "thread-6"],
+      "created_at": "2026-02-01T10:00:00Z",
+      "updated_at": "2026-03-09T08:00:00Z"
+    },
+    {
+      "id": "col-2",
+      "name": "Product Analytics",
+      "description": "Product performance and inventory tracking",
+      "color": "#CF384D",
+      "icon": "table",
+      "thread_ids": ["thread-2", "thread-5"],
+      "created_at": "2026-02-15T14:00:00Z",
+      "updated_at": "2026-03-08T14:00:00Z"
+    },
+    {
+      "id": "col-3",
+      "name": "HR & People",
+      "description": "Employee analytics and workforce insights",
+      "color": "#16A34A",
+      "icon": "users",
+      "thread_ids": ["thread-3"],
+      "created_at": "2026-03-01T09:00:00Z",
+      "updated_at": "2026-03-07T10:00:00Z"
+    }
+  ],
+  "dashboards": [
+    {
+      "id": "dash-1",
+      "title": "Executive Overview",
+      "description": "High-level KPIs and business metrics",
+      "is_public": true,
+      "connection_id": "conn-1",
+      "created_at": "2026-02-01T10:00:00Z",
+      "updated_at": "2026-03-09T08:00:00Z",
+      "widgets": [
+        {
+          "id": "widget-1",
+          "type": "chart",
+          "title": "Revenue Trend",
+          "chartType": "area",
+          "data": {
+            "labels": ["Oct", "Nov", "Dec", "Jan", "Feb", "Mar"],
+            "datasets": [{"name": "Revenue ($K)", "data": [580, 640, 720, 820, 760, 680], "color": "#3C4C73"}]
+          },
+          "position_x": 0,
+          "position_y": 0,
+          "grid_width": 6,
+          "grid_height": 4
+        },
+        {
+          "id": "widget-2",
+          "type": "chart",
+          "title": "Orders by Category",
+          "chartType": "pie",
+          "data": {
+            "labels": ["Electronics", "Clothing", "Home", "Sports", "Books"],
+            "datasets": [{"name": "Orders", "data": [4520, 3200, 2100, 1800, 1200], "colors": ["#3C4C73", "#CF384D", "#16A34A", "#D97706", "#8B5CF6"]}]
+          },
+          "position_x": 6,
+          "position_y": 0,
+          "grid_width": 6,
+          "grid_height": 4
+        },
+        {
+          "id": "widget-3",
+          "type": "table",
+          "title": "Top Customers",
+          "columns": ["Customer", "Total Spent", "Orders", "Last Order"],
+          "rows": [
+            {"Customer": "Acme Corp", "Total Spent": "$125,400", "Orders": 45, "Last Order": "Mar 8, 2026"},
+            {"Customer": "TechStart Inc", "Total Spent": "$98,200", "Orders": 32, "Last Order": "Mar 9, 2026"},
+            {"Customer": "Global Retail", "Total Spent": "$87,600", "Orders": 28, "Last Order": "Mar 7, 2026"},
+            {"Customer": "DataFlow LLC", "Total Spent": "$76,300", "Orders": 22, "Last Order": "Mar 5, 2026"},
+            {"Customer": "CloudNine Co", "Total Spent": "$65,800", "Orders": 18, "Last Order": "Mar 6, 2026"}
+          ],
+          "position_x": 0,
+          "position_y": 4,
+          "grid_width": 12,
+          "grid_height": 4
+        }
+      ]
+    },
+    {
+      "id": "dash-2",
+      "title": "Sales Performance",
+      "description": "Detailed sales metrics and team performance",
+      "is_public": false,
+      "connection_id": "conn-2",
+      "created_at": "2026-02-15T10:00:00Z",
+      "updated_at": "2026-03-08T14:00:00Z",
+      "widgets": [
+        {
+          "id": "widget-4",
+          "type": "chart",
+          "title": "Sales by Rep",
+          "chartType": "bar",
+          "data": {
+            "labels": ["Sarah K.", "Mike R.", "Lisa T.", "James P.", "Ana M."],
+            "datasets": [
+              {"name": "Closed ($K)", "data": [245, 210, 198, 175, 162], "color": "#3C4C73"},
+              {"name": "Target ($K)", "data": [200, 200, 200, 200, 200], "color": "#CF384D"}
+            ]
+          },
+          "position_x": 0,
+          "position_y": 0,
+          "grid_width": 8,
+          "grid_height": 4
+        },
+        {
+          "id": "widget-5",
+          "type": "chart",
+          "title": "Pipeline Stage",
+          "chartType": "bar",
+          "data": {
+            "labels": ["Prospect", "Qualified", "Proposal", "Negotiation", "Closed Won"],
+            "datasets": [{"name": "Deals", "data": [120, 85, 42, 28, 18], "color": "#4F5D8A"}]
+          },
+          "position_x": 8,
+          "position_y": 0,
+          "grid_width": 4,
+          "grid_height": 4
+        }
+      ]
+    }
+  ],
+  "tables": {
+    "conn-1": [
+      {"name": "orders", "schema": "public", "row_count": 125430, "size_mb": 89, "type": "table", "description": "Customer orders and transactions"},
+      {"name": "customers", "schema": "public", "row_count": 34500, "size_mb": 24, "type": "table", "description": "Customer profiles and information"},
+      {"name": "products", "schema": "public", "row_count": 1247, "size_mb": 3, "type": "table", "description": "Product catalog"},
+      {"name": "order_items", "schema": "public", "row_count": 342000, "size_mb": 156, "type": "table", "description": "Individual items within orders"},
+      {"name": "categories", "schema": "public", "row_count": 28, "size_mb": 0.1, "type": "table", "description": "Product categories hierarchy"},
+      {"name": "payments", "schema": "public", "row_count": 125430, "size_mb": 45, "type": "table", "description": "Payment transactions"},
+      {"name": "shipping", "schema": "public", "row_count": 98000, "size_mb": 32, "type": "table", "description": "Shipping records and tracking"},
+      {"name": "reviews", "schema": "public", "row_count": 67800, "size_mb": 28, "type": "table", "description": "Product reviews and ratings"},
+      {"name": "inventory", "schema": "public", "row_count": 1247, "size_mb": 1, "type": "table", "description": "Current stock levels"},
+      {"name": "suppliers", "schema": "public", "row_count": 156, "size_mb": 0.5, "type": "table", "description": "Supplier information"},
+      {"name": "analytics_events", "schema": "analytics", "row_count": 2450000, "size_mb": 1200, "type": "table", "description": "Website analytics events"},
+      {"name": "page_views", "schema": "analytics", "row_count": 890000, "size_mb": 320, "type": "table", "description": "Page view tracking"}
+    ],
+    "conn-2": [
+      {"name": "products", "schema": "default", "row_count": 856, "size_mb": 2, "type": "table", "description": "Store product listings"},
+      {"name": "orders", "schema": "default", "row_count": 45600, "size_mb": 34, "type": "table", "description": "Customer orders"},
+      {"name": "users", "schema": "default", "row_count": 12300, "size_mb": 8, "type": "table", "description": "Registered users"},
+      {"name": "cart_items", "schema": "default", "row_count": 8900, "size_mb": 3, "type": "table", "description": "Shopping cart items"},
+      {"name": "wishlists", "schema": "default", "row_count": 5600, "size_mb": 2, "type": "table", "description": "User wishlists"},
+      {"name": "promotions", "schema": "default", "row_count": 45, "size_mb": 0.1, "type": "table", "description": "Active promotions and discounts"}
+    ],
+    "conn-3": [
+      {"name": "employees", "schema": "public", "row_count": 416, "size_mb": 2, "type": "table", "description": "Employee records"},
+      {"name": "departments", "schema": "public", "row_count": 12, "size_mb": 0.1, "type": "table", "description": "Department structure"},
+      {"name": "payroll", "schema": "public", "row_count": 4992, "size_mb": 8, "type": "table", "description": "Monthly payroll records"},
+      {"name": "attendance", "schema": "public", "row_count": 89000, "size_mb": 24, "type": "table", "description": "Daily attendance logs"},
+      {"name": "leave_requests", "schema": "public", "row_count": 2340, "size_mb": 1, "type": "table", "description": "Leave and PTO requests"},
+      {"name": "performance_reviews", "schema": "public", "row_count": 832, "size_mb": 3, "type": "table", "description": "Annual performance reviews"}
+    ]
+  },
+  "table_schemas": {
+    "conn-1__orders": {
+      "table_name": "orders",
+      "schema": "public",
+      "columns": [
+        {"name": "id", "type": "integer", "nullable": false, "primary_key": true, "description": "Unique order identifier"},
+        {"name": "customer_id", "type": "integer", "nullable": false, "foreign_key": "customers.id", "description": "Reference to customer"},
+        {"name": "order_date", "type": "timestamp", "nullable": false, "description": "When the order was placed"},
+        {"name": "status", "type": "varchar(20)", "nullable": false, "description": "Order status (pending, processing, shipped, delivered, cancelled)"},
+        {"name": "total_amount", "type": "decimal(10,2)", "nullable": false, "description": "Total order amount"},
+        {"name": "shipping_address", "type": "text", "nullable": true, "description": "Delivery address"},
+        {"name": "payment_method", "type": "varchar(20)", "nullable": false, "description": "Payment method used"},
+        {"name": "created_at", "type": "timestamp", "nullable": false, "description": "Record creation time"},
+        {"name": "updated_at", "type": "timestamp", "nullable": false, "description": "Last update time"}
+      ],
+      "indexes": [
+        {"name": "pk_orders", "columns": ["id"], "unique": true},
+        {"name": "idx_orders_customer", "columns": ["customer_id"], "unique": false},
+        {"name": "idx_orders_date", "columns": ["order_date"], "unique": false},
+        {"name": "idx_orders_status", "columns": ["status"], "unique": false}
+      ],
+      "row_count": 125430
+    },
+    "conn-1__customers": {
+      "table_name": "customers",
+      "schema": "public",
+      "columns": [
+        {"name": "id", "type": "integer", "nullable": false, "primary_key": true, "description": "Unique customer identifier"},
+        {"name": "name", "type": "varchar(100)", "nullable": false, "description": "Customer full name"},
+        {"name": "email", "type": "varchar(255)", "nullable": false, "description": "Email address"},
+        {"name": "phone", "type": "varchar(20)", "nullable": true, "description": "Phone number"},
+        {"name": "city", "type": "varchar(100)", "nullable": true, "description": "City"},
+        {"name": "state", "type": "varchar(50)", "nullable": true, "description": "State/Province"},
+        {"name": "country", "type": "varchar(50)", "nullable": false, "description": "Country"},
+        {"name": "segment", "type": "varchar(20)", "nullable": false, "description": "Customer segment (enterprise, mid-market, small-business, consumer)"},
+        {"name": "lifetime_value", "type": "decimal(10,2)", "nullable": true, "description": "Customer lifetime value"},
+        {"name": "created_at", "type": "timestamp", "nullable": false, "description": "Account creation date"}
+      ],
+      "indexes": [
+        {"name": "pk_customers", "columns": ["id"], "unique": true},
+        {"name": "idx_customers_email", "columns": ["email"], "unique": true}
+      ],
+      "row_count": 34500
+    }
+  },
+  "sample_data": {
+    "conn-1__orders": [
+      {"id": 125001, "customer_id": 4521, "order_date": "2026-03-09T08:30:00Z", "status": "processing", "total_amount": 299.99, "payment_method": "credit_card"},
+      {"id": 125002, "customer_id": 8934, "order_date": "2026-03-09T09:15:00Z", "status": "pending", "total_amount": 45.50, "payment_method": "paypal"},
+      {"id": 125003, "customer_id": 2341, "order_date": "2026-03-09T09:45:00Z", "status": "shipped", "total_amount": 189.00, "payment_method": "credit_card"},
+      {"id": 125004, "customer_id": 7812, "order_date": "2026-03-08T14:20:00Z", "status": "delivered", "total_amount": 520.00, "payment_method": "bank_transfer"},
+      {"id": 125005, "customer_id": 1234, "order_date": "2026-03-08T16:00:00Z", "status": "delivered", "total_amount": 75.99, "payment_method": "credit_card"},
+      {"id": 125006, "customer_id": 5678, "order_date": "2026-03-08T10:30:00Z", "status": "processing", "total_amount": 1250.00, "payment_method": "credit_card"},
+      {"id": 125007, "customer_id": 3456, "order_date": "2026-03-07T11:15:00Z", "status": "cancelled", "total_amount": 89.99, "payment_method": "paypal"},
+      {"id": 125008, "customer_id": 9012, "order_date": "2026-03-07T13:45:00Z", "status": "shipped", "total_amount": 345.00, "payment_method": "credit_card"},
+      {"id": 125009, "customer_id": 6789, "order_date": "2026-03-07T09:00:00Z", "status": "delivered", "total_amount": 155.50, "payment_method": "bank_transfer"},
+      {"id": 125010, "customer_id": 2345, "order_date": "2026-03-06T15:30:00Z", "status": "delivered", "total_amount": 420.00, "payment_method": "credit_card"}
+    ],
+    "conn-1__customers": [
+      {"id": 1234, "name": "John Smith", "email": "john@acmecorp.com", "phone": "+1-555-0101", "city": "New York", "state": "NY", "country": "US", "segment": "enterprise", "lifetime_value": 12500.00},
+      {"id": 2341, "name": "Sarah Johnson", "email": "sarah@techstart.io", "phone": "+1-555-0202", "city": "San Francisco", "state": "CA", "country": "US", "segment": "mid-market", "lifetime_value": 8900.00},
+      {"id": 3456, "name": "Michael Chen", "email": "mchen@globalretail.com", "phone": "+1-555-0303", "city": "Chicago", "state": "IL", "country": "US", "segment": "enterprise", "lifetime_value": 23400.00},
+      {"id": 4521, "name": "Emily Davis", "email": "emily@cloudnine.co", "phone": "+1-555-0404", "city": "Austin", "state": "TX", "country": "US", "segment": "small-business", "lifetime_value": 4200.00},
+      {"id": 5678, "name": "Robert Wilson", "email": "rwilson@dataflow.com", "phone": "+1-555-0505", "city": "Seattle", "state": "WA", "country": "US", "segment": "enterprise", "lifetime_value": 34500.00}
+    ]
+  },
+  "suggestions": {
+    "conn-1": [
+      {"id": "sug-1", "text": "Show me revenue trends for the last 6 months", "category": "revenue"},
+      {"id": "sug-2", "text": "What are the top 10 customers by lifetime value?", "category": "customers"},
+      {"id": "sug-3", "text": "Compare sales performance across product categories", "category": "sales"},
+      {"id": "sug-4", "text": "Show order fulfillment times by shipping method", "category": "operations"}
+    ],
+    "conn-2": [
+      {"id": "sug-5", "text": "What are the best selling products this month?", "category": "products"},
+      {"id": "sug-6", "text": "Show me cart abandonment rates by device type", "category": "analytics"},
+      {"id": "sug-7", "text": "List all active promotions and their conversion rates", "category": "marketing"},
+      {"id": "sug-8", "text": "Show user registration trends over time", "category": "users"}
+    ],
+    "conn-3": [
+      {"id": "sug-9", "text": "What's the employee turnover rate by department?", "category": "hr"},
+      {"id": "sug-10", "text": "Show average salary distribution across roles", "category": "payroll"},
+      {"id": "sug-11", "text": "Which departments have the most open positions?", "category": "hiring"},
+      {"id": "sug-12", "text": "Show attendance patterns for this quarter", "category": "attendance"}
+    ]
+  },
+  "introspection": {
+    "conn-1": {
+      "status": "completed",
+      "progress": 100,
+      "tables_discovered": 12,
+      "relationships_found": 8,
+      "suggestions_generated": 4,
+      "completed_at": "2026-03-01T10:30:00Z"
+    },
+    "conn-2": {
+      "status": "completed",
+      "progress": 100,
+      "tables_discovered": 6,
+      "relationships_found": 4,
+      "suggestions_generated": 4,
+      "completed_at": "2026-03-02T14:00:00Z"
+    },
+    "conn-3": {
+      "status": "completed",
+      "progress": 100,
+      "tables_discovered": 6,
+      "relationships_found": 3,
+      "suggestions_generated": 4,
+      "completed_at": "2026-03-03T09:00:00Z"
+    }
+  }
+}
