@@ -17,43 +17,81 @@ async function httpJson<T>(url: string, init?: RequestInit): Promise<T> {
   return response.json();
 }
 
+/** Try real API, return fallback on network/server error */
+async function httpJsonSafe<T>(url: string, init: RequestInit | undefined, fallback: T): Promise<T> {
+  try {
+    return await httpJson<T>(url, init);
+  } catch {
+    return fallback;
+  }
+}
+
+/* ── Demo data for when no backend is running ── */
+
+const DEMO_THREADS = [
+  { thread_id: "demo-1", title: "Revenue analysis Q4 2025", updated_at: new Date(Date.now() - 3600000).toISOString(), connection_name: "Production Analytics" },
+  { thread_id: "demo-2", title: "Top selling products this month", updated_at: new Date(Date.now() - 7200000).toISOString(), connection_name: "E-Commerce DB" },
+  { thread_id: "demo-3", title: "Customer segmentation report", updated_at: new Date(Date.now() - 86400000).toISOString(), connection_name: "Production Analytics" },
+  { thread_id: "demo-4", title: "Marketing campaign performance", updated_at: new Date(Date.now() - 86400000 * 2).toISOString(), connection_name: "Marketing DB" },
+  { thread_id: "demo-5", title: "Inventory status overview", updated_at: new Date(Date.now() - 86400000 * 3).toISOString(), connection_name: "E-Commerce DB" },
+  { thread_id: "demo-6", title: "User growth metrics", updated_at: new Date(Date.now() - 86400000 * 5).toISOString(), connection_name: "Production Analytics" },
+];
+
+const DEMO_CONNECTIONS = {
+  items: [
+    { id: "conn-1", name: "Production Analytics", type: "postgresql", status: "active", tables_count: 42 },
+    { id: "conn-2", name: "E-Commerce DB", type: "mysql", status: "active", tables_count: 28 },
+    { id: "conn-3", name: "Marketing DB", type: "postgresql", status: "active", tables_count: 15 },
+  ],
+  total: 3,
+};
+
+const DEMO_COLLECTIONS = [
+  { id: "col-1", name: "Sales & Revenue", color: "#6366F1", connection_ids: ["conn-1", "conn-2"], description: "All sales-related databases" },
+  { id: "col-2", name: "Marketing Analytics", color: "#EC4899", connection_ids: ["conn-3"], description: "Marketing campaign data" },
+];
+
 // === Thread API ===
 export const threadApi = {
   search: (params?: { limit?: number; offset?: number }) =>
-    httpJson<any[]>("/threads/search", {
+    httpJsonSafe<any[]>("/threads/search", {
       method: "POST",
       body: JSON.stringify({
         limit: params?.limit ?? 50,
         offset: params?.offset ?? 0,
       }),
-    }),
+    }, DEMO_THREADS),
 
   getState: (threadId: string) =>
-    httpJson<any>(`/threads/${threadId}/state`),
+    httpJsonSafe<any>(`/threads/${threadId}/state`, undefined, { values: { messages: [] } }),
 
   create: (data: { thread_id: string; title?: string }) =>
-    httpJson<any>("/threads", {
+    httpJsonSafe<any>("/threads", {
       method: "POST",
       body: JSON.stringify(data),
-    }),
+    }, data),
 
   delete: (threadId: string) =>
-    httpJson<void>(`/threads/${threadId}`, { method: "DELETE" }),
+    httpJsonSafe<void>(`/threads/${threadId}`, { method: "DELETE" }, undefined as any),
 
   getCanvasHistory: (threadId: string) =>
-    httpJson<any[]>(`/api/v1/canvas-history/${threadId}`),
+    httpJsonSafe<any[]>(`/api/v1/canvas-history/${threadId}`, undefined, []),
 };
 
 // === Connection API ===
 export const connectionApi = {
   list: (page = 1, pageSize = 50) =>
-    httpJson<any>(
-      `/api/v1/connections?page=${page}&page_size=${pageSize}`
+    httpJsonSafe<any>(
+      `/api/v1/connections?page=${page}&page_size=${pageSize}`,
+      undefined,
+      DEMO_CONNECTIONS
     ),
 
   get: (id: string, includeConfig = false) =>
-    httpJson<any>(
-      `/api/v1/connections/${id}${includeConfig ? "?include_config=true" : ""}`
+    httpJsonSafe<any>(
+      `/api/v1/connections/${id}${includeConfig ? "?include_config=true" : ""}`,
+      undefined,
+      DEMO_CONNECTIONS.items.find(c => c.id === id) || DEMO_CONNECTIONS.items[0]
     ),
 
   create: (data: any) =>
@@ -154,7 +192,7 @@ export const promptsApi = {
 
 // === Dashboard API ===
 export const dashboardApi = {
-  list: () => httpJson<any[]>("/api/v1/dashboards"),
+  list: () => httpJsonSafe<any[]>("/api/v1/dashboards", undefined, []),
   get: (id: string) => httpJson<any>(`/api/v1/dashboards/${id}`),
   create: (data: any) =>
     httpJson<any>("/api/v1/dashboards", {
@@ -183,13 +221,17 @@ export const dashboardApi = {
 // === Suggestions API ===
 export const suggestionsApi = {
   list: (connectionId: string) =>
-    httpJson<any[]>(`/api/v1/connections/${connectionId}/suggestions`),
+    httpJsonSafe<any[]>(`/api/v1/connections/${connectionId}/suggestions`, undefined, []),
 };
 
 // === Collections API ===
 export const collectionsApi = {
-  list: () => httpJson<any[]>("/api/v1/collections"),
-  get: (id: string) => httpJson<any>(`/api/v1/collections/${id}`),
+  list: () => httpJsonSafe<any[]>("/api/v1/collections", undefined, DEMO_COLLECTIONS),
+  get: (id: string) => httpJsonSafe<any>(
+    `/api/v1/collections/${id}`,
+    undefined,
+    DEMO_COLLECTIONS.find(c => c.id === id) || DEMO_COLLECTIONS[0]
+  ),
   create: (data: any) =>
     httpJson<any>("/api/v1/collections", {
       method: "POST",

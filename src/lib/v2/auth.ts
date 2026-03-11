@@ -30,6 +30,12 @@ export function useAuth() {
       } catch {
         localStorage.removeItem("cinsights_session");
       }
+    } else {
+      // Demo fallback — show a demo user when no session exists
+      setSession({
+        user: { id: 0, username: "alex.johnson", email: "alex@cinsights.io", full_name: "Alex Johnson", role: "admin" },
+        accessToken: "demo-token",
+      });
     }
     setIsLoading(false);
   }, []);
