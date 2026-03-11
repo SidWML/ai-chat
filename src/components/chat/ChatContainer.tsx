@@ -185,6 +185,7 @@ export function ChatContainer({ chatId }: ChatContainerProps) {
         }
 
         let assistantText = "";
+        let streamCanvasBlocks: any[] | null = null;
         const assistantMsgId = `assistant-${Date.now()}`;
         const streamStartTime = Date.now();
 
@@ -228,6 +229,10 @@ export function ChatContainer({ chatId }: ChatContainerProps) {
                     ];
                   });
                 }
+                // Handle canvas blocks from stream (demo mode)
+                if (op.path?.includes("/canvas") && op.value?.blocks) {
+                  streamCanvasBlocks = op.value.blocks;
+                }
               }
             }
           }
@@ -262,22 +267,30 @@ export function ChatContainer({ chatId }: ChatContainerProps) {
           return prev;
         });
 
-        // Fetch canvas blocks
-        try {
-          const state = await getThreadState(currentThreadId);
-          const allMessages = state.values?.messages ?? [];
-          const lastAssistant = [...allMessages]
-            .reverse()
-            .find((m: any) => m.canvas);
-          if (lastAssistant?.canvas?.blocks) {
-            const blocks = convertMockBlocks(lastAssistant.canvas.blocks);
-            if (blocks.length) {
-              setBlocks(blocks);
-              openCanvas();
-            }
+        // Show canvas blocks — prefer stream-delivered blocks, fall back to thread state
+        if (streamCanvasBlocks?.length) {
+          const blocks = convertMockBlocks(streamCanvasBlocks);
+          if (blocks.length) {
+            setBlocks(blocks);
+            openCanvas();
           }
-        } catch (stateErr) {
-          console.error("Failed to fetch canvas:", stateErr);
+        } else {
+          try {
+            const state = await getThreadState(currentThreadId);
+            const allMessages = state.values?.messages ?? [];
+            const lastAssistant = [...allMessages]
+              .reverse()
+              .find((m: any) => m.canvas);
+            if (lastAssistant?.canvas?.blocks) {
+              const blocks = convertMockBlocks(lastAssistant.canvas.blocks);
+              if (blocks.length) {
+                setBlocks(blocks);
+                openCanvas();
+              }
+            }
+          } catch (stateErr) {
+            console.error("Failed to fetch canvas:", stateErr);
+          }
         }
       } catch (err) {
         console.error("Stream error:", err);
